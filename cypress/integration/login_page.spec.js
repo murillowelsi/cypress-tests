@@ -5,12 +5,12 @@ context('Login Page', () => {
 
     it("should login successfully", () => {
         const loginSucesso = {
-            email: "murillo.welsi@gmail.com",
-            pass: "Mw123456*"
+            email: "qa@gmail.com",
+            pass: "qa@123*"
         };
 
         const successMessage = {
-            message: "Murillo Welsi de Souza Pereira"
+            message: "QA"
         };
 
         cy.login(loginSucesso)
@@ -20,8 +20,8 @@ context('Login Page', () => {
 
     it("should see incorrect user", () => {
         const loginFalha = {
-            email: "murillo.welsi-gmail.com",
-            pass: "Mw123456*"
+            email: "qa-@gmail.com",
+            pass: "qa@123"
         };
 
         const alertError = {
@@ -34,7 +34,7 @@ context('Login Page', () => {
 
     it("should see incorrect password", () => {
         const loginFalha = {
-            email: "murillo.welsi@gmail.com",
+            email: "qa@gmail.com",
             pass: "123456"
         };
 
@@ -48,8 +48,8 @@ context('Login Page', () => {
 
     it("should see email is required", () => {
         
-        const email = "murillo.welsi@gmail.com";
-        const pass = "Mw123456*";
+        const email = "qa@gmail.com";
+        const pass = "qa@123";
 
         cy.get("input[placeholder='nome@gmail.com']").invoke('val', email);
         cy.get("input[placeholder=senha]").invoke('val', pass);
@@ -60,8 +60,7 @@ context('Login Page', () => {
     });
 
     it("should see password is required", () => {
-        const email = "murillo.welsi@gmail.com";
-        const pass = "Mw123456*";
+        const email = "qa@gmail.com";
 
         cy.get("input[placeholder='nome@gmail.com']").type(email);
         cy.get("input[placeholder=senha]").invoke('val', '');
