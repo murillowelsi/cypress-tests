@@ -47,26 +47,28 @@ context('Login Page', () => {
     });
 
     it("should see email is required", () => {
-        
-        const email = "qa@gmail.com";
-        const pass = "qa@123";
+        const loginFalha = {
+            pass: "qa@123"
+        };
 
-        cy.get("input[placeholder='nome@gmail.com']").invoke('val', email);
-        cy.get("input[placeholder=senha]").invoke('val', pass);
-        cy.get("#login").click();
+        const alertError = {
+            message: "Opps. Cadê o email?"
+        };
 
-        cy.get(".alert span b")
-          .should('contain', 'Opps. Cadê o email?');
+        cy.loginWithoutEmail(loginFalha)
+        cy.alertMessage(alertError)
     });
 
     it("should see password is required", () => {
-        const email = "qa@gmail.com";
+        const loginFalha = {
+            email: "qa@gmail.com"
+        };
 
-        cy.get("input[placeholder='nome@gmail.com']").type(email);
-        cy.get("input[placeholder=senha]").invoke('val', '');
-        cy.get("#login").click();
+        const alertError = {
+            message: "Opps. Cadê a senha?"
+        };
 
-        cy.get(".alert span b")
-          .should('contain', 'Opps. Cadê a senha?');
+        cy.loginWithoutPass(loginFalha)
+        cy.alertMessage(alertError)
     });
 });

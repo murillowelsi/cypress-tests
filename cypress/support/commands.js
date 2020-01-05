@@ -24,13 +24,31 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+Cypress.Commands.add("email", () => {
+    cy.get("input[placeholder='nome@gmail.com']");
+});
+
+Cypress.Commands.add("senha", () => {
+    cy.get("input[placeholder=senha]");
+});
+
 Cypress.Commands.add('entrar', () => {
     cy.get("#login").click();
 });
 
 Cypress.Commands.add("login", data => {
-    cy.get("input[placeholder='nome@gmail.com']").type(data.email);
-    cy.get("input[placeholder=senha]").type(data.pass);
+    cy.email().type(data.email);
+    cy.senha().type(data.pass);
+    cy.entrar();
+});
+
+Cypress.Commands.add("loginWithoutEmail", data => {
+    cy.senha().type(data.pass);
+    cy.entrar();
+});
+
+Cypress.Commands.add("loginWithoutPass", data => {
+    cy.email().type(data.email);
     cy.entrar();
 });
 
